@@ -37,6 +37,6 @@ const UseStateCounter = () => {
       </section>
     </>
   )
-};
+}
 
 export default UseStateCounter;
