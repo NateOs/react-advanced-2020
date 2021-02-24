@@ -8,10 +8,20 @@ import React, { useState } from 'react';
 const ControlledInputs = () => {
   const [firstName, setFirstName] = useState('')
   const [email, setEmail] = useState('')
+  const [people, setPeople] = useState([])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(firstName)
+    if ( firstName && email ) {
+      const person = {firstName: firstName, email: email} //same as {firstName, email}, same key value pair shorthand
+      setPeople((people) => {
+        return [...people, person]
+      })
+      setFirstName('')
+      setEmail('')
+    } else {
+      console.log('empty vals')
+    }
   }
   return (
   <>
@@ -23,10 +33,11 @@ const ControlledInputs = () => {
         </div>
         <div className='form-control'>
           <label htmlFor='email'>email : </label>
-          <input type='text' id='email' name='email' value={email}/>
+          <input type='text' id='email' name='email' value={email} onChange={(e) => setEmail(e.target.value)}/>
         </div>
         <button type='submit'>add person</button> 
       </form>
+      
     </article>
   </>
   )
